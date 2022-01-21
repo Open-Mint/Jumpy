@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/Jumpy.dir/src/main.cpp.o CMakeFiles/Jumpy.dir/src/Game.cpp.o CMakeFiles/Jumpy.dir/src/Entity.cpp.o CMakeFiles/Jumpy.dir/src/Obstacle.cpp.o -o Jumpy  -Wl,-rpath,/usr/local/lib64 /usr/local/lib64/libraylib.so -L/usr/local/lib64 -lraylib 

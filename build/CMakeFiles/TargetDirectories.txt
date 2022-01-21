@@ -1,0 +1,3 @@
+/home/cricko/Documents/Projects/C++ Projects/RaylibGameJam/Jumpy!/build/CMakeFiles/Jumpy.dir
+/home/cricko/Documents/Projects/C++ Projects/RaylibGameJam/Jumpy!/build/CMakeFiles/edit_cache.dir
+/home/cricko/Documents/Projects/C++ Projects/RaylibGameJam/Jumpy!/build/CMakeFiles/rebuild_cache.dir
