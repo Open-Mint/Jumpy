@@ -12,6 +12,7 @@ void Game::clear() const
 
 void Game::update(float dt)
 {
+    player.move(obstacle.getLeftObstacle(), obstacle.getRightObstacle());
 }
 
 void Game::render()

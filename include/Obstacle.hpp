@@ -12,6 +12,8 @@ private:
     Rectangle platform;
 public:
     Obstacle();
+    std::vector<std::vector<Vector2>>& getLeftObstacle();
+    std::vector<std::vector<Vector2>>& getRightObstacle();
     void draw();
     ~Obstacle();
 private:

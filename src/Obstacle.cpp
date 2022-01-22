@@ -51,6 +51,16 @@ void Obstacle::setVectorRight()
     }
 }
 
+std::vector<std::vector<Vector2>>& Obstacle::getLeftObstacle()
+{
+    return LeftObstacle;
+}
+
+std::vector<std::vector<Vector2>>& Obstacle::getRightObstacle()
+{
+    return RightObstacle;
+}
+
 void Obstacle::draw()
 {
     Color color = {60, 60, 60, 255}; // darker gray
