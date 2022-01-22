@@ -5,6 +5,20 @@ Entity::Entity()
 {
 }
 
+void Entity::collisionWithObsticle(std::vector<std::vector<Vector2>>& LeftObstacle, std::vector<std::vector<Vector2>>& RightObstacle)
+{
+    for(auto& left : LeftObstacle)
+    {
+        if(CheckCollisionPointTriangle({position.x, position.y - 10.f}, left.at(0), left.at(1), left.at(2)))
+            CloseWindow();
+    }
+    for(auto& right : RightObstacle)
+    {
+        if(CheckCollisionPointTriangle({position.x, position.y - 10.f}, right.at(0), right.at(1), right.at(2)))
+            CloseWindow();
+    }
+}
+
 void Entity::move(std::vector<std::vector<Vector2>>& LeftObstacle, std::vector<std::vector<Vector2>>& RightObstacle)
 {
     if(IsKeyPressed(KEY_SPACE))
