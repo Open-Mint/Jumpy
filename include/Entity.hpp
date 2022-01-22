@@ -6,8 +6,9 @@ class Entity
 {
 private:
     Vector2 position;
-    Vector2 size;
+    float radius;
 public:
     Entity();
+    void draw();
     ~Entity();
 };

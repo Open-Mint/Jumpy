@@ -59,7 +59,8 @@ CMakeFiles/Jumpy.dir/src/Game.cpp.o: ../src/Game.cpp \
   /usr/include/c++/11/bits/functional_hash.h \
   /usr/include/c++/11/bits/hash_bytes.h \
   /usr/include/c++/11/bits/range_access.h \
-  /usr/include/c++/11/bits/vector.tcc
+  /usr/include/c++/11/bits/vector.tcc \
+  ../include/Entity.hpp
 
 CMakeFiles/Jumpy.dir/src/Obstacle.cpp.o: ../src/Obstacle.cpp \
   /usr/include/stdc-predef.h \
@@ -166,7 +167,8 @@ CMakeFiles/Jumpy.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/c++/11/bits/functional_hash.h \
   /usr/include/c++/11/bits/hash_bytes.h \
   /usr/include/c++/11/bits/range_access.h \
-  /usr/include/c++/11/bits/vector.tcc
+  /usr/include/c++/11/bits/vector.tcc \
+  ../include/Entity.hpp
 
 
 /usr/include/c++/11/bits/range_access.h:

@@ -3,6 +3,7 @@
 #include "raylib.h"
 
 #include "Obstacle.hpp"
+#include "Entity.hpp"
 
 class Game
 {
@@ -10,6 +11,7 @@ private:
     static constexpr int WindowWidth = 550;
     static constexpr int WindowHeight = 650;
     Obstacle obstacle;
+    Entity player;
 public:
     Game();
     void run();

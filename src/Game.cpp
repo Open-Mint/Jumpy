@@ -7,7 +7,7 @@ Game::Game()
 
 void Game::clear() const
 {
-    ClearBackground(RAYWHITE);
+    ClearBackground(GRAY);
 }
 
 void Game::update(float dt)
@@ -16,6 +16,7 @@ void Game::update(float dt)
 
 void Game::render()
 {
+    player.draw();
     obstacle.draw();
 }
 
