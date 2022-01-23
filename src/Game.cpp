@@ -12,9 +12,9 @@ void Game::clear() const
 
 void Game::update(float dt)
 {   
-    obstacle.move();
     player.collisionWithObsticle(obstacle.getLeftObstacle(), obstacle.getRightObstacle());
     player.move(obstacle.getLeftObstacle(), obstacle.getRightObstacle());
+    obstacle.move(player.hasStarted());
     player.playerView();
 }
 

@@ -16,7 +16,7 @@ public:
     Obstacle();
     std::vector<std::vector<Vector2>>& getLeftObstacle();
     std::vector<std::vector<Vector2>>& getRightObstacle();
-    void move();
+    void move(bool state);
     void draw();
     ~Obstacle();
 private:

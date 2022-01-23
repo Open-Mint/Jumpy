@@ -58,7 +58,7 @@ void Obstacle::setVectorRight()
     for(int i = 0; i < 7; ++i)
     {
         RightObstacle.emplace_back(RightTriangle);
-    
+        
         RightTriangle[0].y += 80.f;
         RightTriangle[1].y += 80.f;
         RightTriangle[2].y += 80.f;
@@ -75,25 +75,34 @@ std::vector<std::vector<Vector2>>& Obstacle::getRightObstacle()
     return RightObstacle;
 }
 
-void Obstacle::move()
+void Obstacle::move(bool state)
 {
     for(auto& left : LeftObstacle)
     {
-        left.at(0).x += GetFrameTime() * 5.f;
-        left.at(1).x += GetFrameTime() * 5.f;
-        left.at(2).x += GetFrameTime() * 5.f;
+        if(!state)
+        {
+            left.at(0).x += GetFrameTime() * 5.f;
+            left.at(1).x += GetFrameTime() * 5.f;
+            left.at(2).x += GetFrameTime() * 5.f;
+        }
     }
     for(auto& right : RightObstacle)
     {
-        right.at(0).x -= GetFrameTime() * 5.f;
-        right.at(1).x -= GetFrameTime() * 5.f;
-        right.at(2).x -= GetFrameTime() * 5.f;
+        if(!state)
+        {
+            right.at(0).x -= GetFrameTime() * 5.f;
+            right.at(1).x -= GetFrameTime() * 5.f;
+            right.at(2).x -= GetFrameTime() * 5.f;
+        }
     }
-    LeftScreenClear.x += GetFrameTime() * 4.f;
-    LeftScreenClear.width += GetFrameTime() * 1.f;
+    if(!state)
+    {
+        LeftScreenClear.x += GetFrameTime() * 4.f;
+        LeftScreenClear.width += GetFrameTime() * 1.f;
 
-    RightScreenClear.x -= GetFrameTime() * 5.f;
-    RightScreenClear.width += GetFrameTime() * 1.f;
+        RightScreenClear.x -= GetFrameTime() * 5.f;
+        RightScreenClear.width += GetFrameTime() * 1.f;
+    }
 }
 
 void Obstacle::draw()

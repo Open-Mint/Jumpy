@@ -35,10 +35,13 @@ void Entity::collisionWithObsticle(std::vector<std::vector<Vector2>>& LeftObstac
     }
 }
 
+const bool Entity::hasStarted() const
+{
+    return states[0];
+}
+
 void Entity::move(std::vector<std::vector<Vector2>>& LeftObstacle, std::vector<std::vector<Vector2>>& RightObstacle)
 {
-    static std::vector<bool> states;
-
     for(int i = 0; i < 13; ++i)
         states.emplace_back(true);
 
