@@ -11,11 +11,11 @@ void Game::clear() const
 }
 
 void Game::update(float dt)
-{
-    
+{   
     obstacle.move();
     player.collisionWithObsticle(obstacle.getLeftObstacle(), obstacle.getRightObstacle());
     player.move(obstacle.getLeftObstacle(), obstacle.getRightObstacle());
+    player.playerView();
 }
 
 void Game::render()
@@ -29,9 +29,11 @@ void Game::MainLoop()
     while(!WindowShouldClose())
     {
         BeginDrawing();
-          clear();
-          update();
-          render();
+          BeginMode2D(player.getView());
+            clear();
+            update();
+            render();
+          EndMode2D();
         EndDrawing();
     }
 }

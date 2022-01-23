@@ -3,6 +3,22 @@
 Entity::Entity()
 : position{550.f / 2.f, 550.f}, radius{10.f}
 {
+    dummyPosition = position;
+
+    camera.target = position;
+    camera.zoom = 1.f;
+    camera.rotation = 0.f;
+    camera.offset = position;
+}
+
+void Entity::playerView()
+{
+    camera.target = dummyPosition;
+}
+
+Camera2D Entity::getView()
+{
+    return camera;
 }
 
 void Entity::collisionWithObsticle(std::vector<std::vector<Vector2>>& LeftObstacle, std::vector<std::vector<Vector2>>& RightObstacle)
@@ -21,6 +37,15 @@ void Entity::collisionWithObsticle(std::vector<std::vector<Vector2>>& LeftObstac
 
 void Entity::move(std::vector<std::vector<Vector2>>& LeftObstacle, std::vector<std::vector<Vector2>>& RightObstacle)
 {
+    static std::vector<bool> states;
+
+    for(int i = 0; i < 13; ++i)
+        states.emplace_back(true);
+
+    static float increaseInSpeed = 5.f; 
+    if(states[0] == false)
+        dummyPosition.y -= GetFrameTime() * increaseInSpeed;
+
     if(IsKeyPressed(KEY_SPACE))
     {
         std::vector<char> side; // vector of char to find which side is player on
@@ -38,11 +63,10 @@ void Entity::move(std::vector<std::vector<Vector2>>& LeftObstacle, std::vector<s
         side.emplace_back('R');
         side.emplace_back('L');
 
-        static std::vector<bool> states;
-
-        for(int i = 0; i < 13; ++i)
-            states.emplace_back(true);
-            
+        if(dummyPosition.y == position.y)
+        {
+            increaseInSpeed += 20.f; // may be causing bad things in future
+        }
         if(side[0] == 'L' && states[0])
         {
             position = {LeftObstacle[6].at(2).x + 100.f, LeftObstacle[6].at(2).y};

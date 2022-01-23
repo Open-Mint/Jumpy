@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = 
 
-CXX_FLAGS = -I/usr/local/include
+CXX_FLAGS =  -g -I/usr/local/include
 
