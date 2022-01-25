@@ -13,9 +13,11 @@ void Game::clear() const
 void Game::update(float dt)
 {   
     player.collisionWithObsticle(obstacle.getLeftObstacle(), obstacle.getRightObstacle());
+    player.handleInput();
     player.move(obstacle.getLeftObstacle(), obstacle.getRightObstacle());
-    obstacle.move(player.hasStarted());
+    obstacle.move(player.start());
     player.playerView();
+    player.moveCamera();
 }
 
 void Game::render()

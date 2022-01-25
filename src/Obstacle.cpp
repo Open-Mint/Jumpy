@@ -79,7 +79,7 @@ void Obstacle::move(bool state)
 {
     for(auto& left : LeftObstacle)
     {
-        if(!state)
+        if(state)
         {
             left.at(0).x += GetFrameTime() * 5.f;
             left.at(1).x += GetFrameTime() * 5.f;
@@ -88,14 +88,14 @@ void Obstacle::move(bool state)
     }
     for(auto& right : RightObstacle)
     {
-        if(!state)
+        if(state)
         {
             right.at(0).x -= GetFrameTime() * 5.f;
             right.at(1).x -= GetFrameTime() * 5.f;
             right.at(2).x -= GetFrameTime() * 5.f;
         }
     }
-    if(!state)
+    if(state)
     {
         LeftScreenClear.x += GetFrameTime() * 4.f;
         LeftScreenClear.width += GetFrameTime() * 1.f;
