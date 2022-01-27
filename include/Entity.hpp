@@ -26,6 +26,10 @@ public:
     
     void move();
     
+    Vector2 getPosition();
+
+    bool hasMoved;
+
     void keepObstaclesMoving(std::vector<std::vector<Vector2>>& LeftObstacle, std::vector<std::vector<Vector2>>& RightObstacle, int dif);
     ~Entity();
 };

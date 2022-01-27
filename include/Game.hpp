@@ -28,4 +28,5 @@ private:
     void clear() const;
     void update(float dt=GetFrameTime());
     void render();
+    void drawStartText() const;
 };

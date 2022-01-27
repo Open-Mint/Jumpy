@@ -5,6 +5,12 @@ Game::Game()
     InitWindow(WindowWidth, WindowHeight, "Jumpy!");
 }
 
+void Game::drawStartText() const
+{
+    DrawText("Hello. Welcome! Move with\nUP, DOWN, LEFT, RIGHT arrows.\nTry to avoid triangles!\n*whispering*Press E when possible...",
+              100.f, 0.f, 24, BLACK);
+}
+
 void Game::clear() const
 {
     ClearBackground(GRAY);
@@ -12,6 +18,8 @@ void Game::clear() const
 
 void Game::update(float dt)
 {   
+    if(!player.hasMoved)
+        drawStartText();
     player.collisionWithObsticle(obstacle.getLeftObstacle(), obstacle.getRightObstacle());
     player.handleInput();
     player.move();

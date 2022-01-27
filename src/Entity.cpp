@@ -5,6 +5,11 @@ Entity::Entity()
 {
 }
 
+Vector2 Entity::getPosition()
+{
+    return position;
+}
+
 void Entity::collisionWithObsticle(std::vector<std::vector<Vector2>>& LeftObstacle, std::vector<std::vector<Vector2>>& RightObstacle)
 {
     for(auto& left : LeftObstacle)
@@ -22,13 +27,25 @@ void Entity::collisionWithObsticle(std::vector<std::vector<Vector2>>& LeftObstac
 void Entity::move()
 {
     if(direction.y == UP.y && direction.x == UP.x)
+    {
         position.y -= GetFrameTime() * 100.f;
+        hasMoved = true;
+    }
     if(direction.y == DOWN.y && direction.x == DOWN.x)
+    {
         position.y += GetFrameTime() * 100.f;
+        hasMoved = true;
+    }
     if(direction.y == LEFT.y && direction.x == LEFT.x)
+    {
         position.x -= GetFrameTime() * 100.f;
+        hasMoved = true;
+    }
     if(direction.y == RIGHT.y && direction.x == RIGHT.x)
+    {
         position.x += GetFrameTime() * 100.f;
+        hasMoved = true;
+    }
 }
 
 void Entity::handleInput()
