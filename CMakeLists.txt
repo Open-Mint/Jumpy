@@ -6,10 +6,13 @@ if (EMSCRIPTEN)
   set(CMAKE_EXECUTABLE_SUFFIX ".html") # This line is used to set your executable to build with the emscripten html template so taht you can directly open it.
 endif ()
 
+
+
 # Set this to the minimal version you want to support
 find_package(raylib 3.0 QUIET) # Let CMake search for a raylib-config.cmake
 
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -g")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
 
 # You could change the QUIET above to REQUIRED and remove this if() clause
 # This part downloads raylib and builds it if it's not installed on your system

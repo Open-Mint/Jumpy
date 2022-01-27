@@ -12,13 +12,6 @@ private:
     static constexpr int WindowHeight = 650;
     Obstacle obstacle;
     Entity player;
-
-    enum class Difficulty
-    {
-        EASY,
-        MEDIUM,
-        HARD,
-    };
 public:
     Game();
     void run();
@@ -26,7 +19,7 @@ public:
 private:
     void MainLoop();
     void clear() const;
-    void update(float dt=GetFrameTime());
+    void update();
     void render();
     void drawStartText() const;
 };

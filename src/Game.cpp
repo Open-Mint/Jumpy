@@ -16,7 +16,7 @@ void Game::clear() const
     ClearBackground(GRAY);
 }
 
-void Game::update(float dt)
+void Game::update()
 {   
     if(!player.hasMoved)
         drawStartText();

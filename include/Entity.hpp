@@ -3,6 +3,7 @@
 #include "raylib.h"
 
 #include <vector>
+#include <random>
 
 class Entity
 {
@@ -18,6 +19,11 @@ private:
     IDLE = {0, 0};
 
     Vector2 direction;
+
+    std::random_device rd;
+    std::mt19937 gen;
+    std::uniform_int_distribution<> cod;
+    int random;
 public:
     Entity();
     void draw();
@@ -29,6 +35,7 @@ public:
     Vector2 getPosition();
 
     bool hasMoved;
+    bool isBoosting;
 
     void keepObstaclesMoving(std::vector<std::vector<Vector2>>& LeftObstacle, std::vector<std::vector<Vector2>>& RightObstacle, int dif);
     ~Entity();
