@@ -12,6 +12,13 @@ private:
     static constexpr int WindowHeight = 650;
     Obstacle obstacle;
     Entity player;
+
+    enum class Difficulty
+    {
+        EASY,
+        MEDIUM,
+        HARD,
+    };
 public:
     Game();
     void run();

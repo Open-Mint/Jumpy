@@ -1,24 +1,25 @@
 #include "../include/Obstacle.hpp"
 
 Obstacle::Obstacle()
-: platform{0.f, 560.f, 550.f, 90.f}
+: platform{0.f, 560.f, 550.f, 90.f}, level{0}
 {
     setVectorLeft();
     setVectorRight();
-    setClearingBackground();
 }
 
-void Obstacle::setClearingBackground()
+void Obstacle::newWave()
 {
-    LeftScreenClear.height = 650.f;
-    LeftScreenClear.width  = 300.f;
-    LeftScreenClear.x = -300.f;
-    LeftScreenClear.y = 0.f;
-
-    RightScreenClear.height = 650.f;
-    RightScreenClear.width  = 300.f;
-    RightScreenClear.x = 550.f;
-    RightScreenClear.y = 0.f;
+    if(RightObstacle[0].at(2).x < 0.f)
+    {
+        RightObstacle.clear();
+        setVectorRight();
+        level++;
+    }
+    if(LeftObstacle[0].at(2).x > 550.f)
+    {
+        LeftObstacle.clear();
+        setVectorLeft(); 
+    }
 }
 
 void Obstacle::setVectorLeft()
@@ -75,36 +76,6 @@ std::vector<std::vector<Vector2>>& Obstacle::getRightObstacle()
     return RightObstacle;
 }
 
-void Obstacle::move(bool state)
-{
-    for(auto& left : LeftObstacle)
-    {
-        if(state)
-        {
-            left.at(0).x += GetFrameTime() * 5.f;
-            left.at(1).x += GetFrameTime() * 5.f;
-            left.at(2).x += GetFrameTime() * 5.f;
-        }
-    }
-    for(auto& right : RightObstacle)
-    {
-        if(state)
-        {
-            right.at(0).x -= GetFrameTime() * 5.f;
-            right.at(1).x -= GetFrameTime() * 5.f;
-            right.at(2).x -= GetFrameTime() * 5.f;
-        }
-    }
-    if(state)
-    {
-        LeftScreenClear.x += GetFrameTime() * 4.f;
-        LeftScreenClear.width += GetFrameTime() * 1.f;
-
-        RightScreenClear.x -= GetFrameTime() * 5.f;
-        RightScreenClear.width += GetFrameTime() * 1.f;
-    }
-}
-
 void Obstacle::draw()
 {
     Color color = {60, 60, 60, 255}; // darker gray
@@ -120,8 +91,6 @@ void Obstacle::draw()
     }
 
     DrawRectangleRec(platform, color);
-    DrawRectangleRec(LeftScreenClear, color);
-    DrawRectangleRec(RightScreenClear, color);
 }
 
 Obstacle::~Obstacle()

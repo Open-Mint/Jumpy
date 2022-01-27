@@ -14,10 +14,9 @@ void Game::update(float dt)
 {   
     player.collisionWithObsticle(obstacle.getLeftObstacle(), obstacle.getRightObstacle());
     player.handleInput();
-    player.move(obstacle.getLeftObstacle(), obstacle.getRightObstacle());
-    obstacle.move(player.start());
-    player.playerView();
-    player.moveCamera();
+    player.move();
+    obstacle.newWave();
+    player.keepObstaclesMoving(obstacle.getLeftObstacle(), obstacle.getRightObstacle(), obstacle.level);
 }
 
 void Game::render()
@@ -31,11 +30,9 @@ void Game::MainLoop()
     while(!WindowShouldClose())
     {
         BeginDrawing();
-          BeginMode2D(player.getView());
             clear();
             update();
             render();
-          EndMode2D();
         EndDrawing();
     }
 }
