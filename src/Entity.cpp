@@ -10,8 +10,26 @@ Vector2 Entity::getPosition()
     return position;
 }
 
-void Entity::collisionWithObsticle(std::vector<std::vector<Vector2>>& LeftObstacle, std::vector<std::vector<Vector2>>& RightObstacle)
+void Entity::collisionWithObsticle(std::vector<std::vector<Vector2>>& LeftObstacle, 
+                                   std::vector<std::vector<Vector2>>& RightObstacle,
+                                   Rectangle& platform)
 {
+    if(position.x < 0.f)
+    {
+        CloseWindow();
+    }
+    if(position.x > 550.f)
+    {
+        CloseWindow();
+    }
+    if(position.y < 0.f)
+    {
+        CloseWindow();
+    }
+    if(position.y > platform.y)
+    {
+        CloseWindow();
+    }
     for(auto& left : LeftObstacle)
     {
         if(CheckCollisionPointTriangle({position.x, position.y - 10.f}, left.at(0), left.at(1), left.at(2)))

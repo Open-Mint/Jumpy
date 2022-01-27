@@ -76,6 +76,11 @@ std::vector<std::vector<Vector2>>& Obstacle::getRightObstacle()
     return RightObstacle;
 }
 
+Rectangle& Obstacle::getPlatform()
+{
+    return platform;
+}
+
 void Obstacle::draw()
 {
     Color color = {60, 60, 60, 255}; // darker gray

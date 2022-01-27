@@ -20,7 +20,7 @@ void Game::update()
 {   
     if(!player.hasMoved)
         drawStartText();
-    player.collisionWithObsticle(obstacle.getLeftObstacle(), obstacle.getRightObstacle());
+    player.collisionWithObsticle(obstacle.getLeftObstacle(), obstacle.getRightObstacle(), obstacle.getPlatform());
     player.handleInput();
     player.move();
     obstacle.newWave();

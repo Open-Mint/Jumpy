@@ -14,6 +14,7 @@ public:
     Obstacle();
     std::vector<std::vector<Vector2>>& getLeftObstacle();
     std::vector<std::vector<Vector2>>& getRightObstacle();
+    Rectangle& getPlatform();
     void draw();
     void newWave();
     ~Obstacle();
