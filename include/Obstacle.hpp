@@ -17,6 +17,8 @@ public:
     Rectangle& getPlatform();
     void draw();
     void newWave();
+    void clearRightVector();
+    void clearLeftVector();
     ~Obstacle();
 private:
     void setVectorLeft();

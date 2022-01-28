@@ -7,17 +7,27 @@ Obstacle::Obstacle()
     setVectorRight();
 }
 
+void Obstacle::clearRightVector()
+{
+    RightObstacle.clear();
+}
+
+void Obstacle::clearLeftVector()
+{
+    LeftObstacle.clear();
+}
+
 void Obstacle::newWave()
 {
     if(RightObstacle[0].at(2).x < 0.f)
     {
-        RightObstacle.clear();
+        clearRightVector();
         setVectorRight();
         level++;
     }
     if(LeftObstacle[0].at(2).x > 550.f)
     {
-        LeftObstacle.clear();
+        clearLeftVector();
         setVectorLeft(); 
     }
 }

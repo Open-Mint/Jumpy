@@ -12,6 +12,11 @@ private:
     static constexpr int WindowHeight = 650;
     Obstacle obstacle;
     Entity player;
+    bool exitWindow;
+    bool WindowState;
+    bool gameOver;
+    Rectangle RestartButton;
+    Rectangle QuitButton;
 public:
     Game();
     void run();
@@ -22,4 +27,7 @@ private:
     void update();
     void render();
     void drawStartText() const;
+    void collisionWithObsticle(std::vector<std::vector<Vector2>>& LeftObstacle, 
+                                     std::vector<std::vector<Vector2>>& RightObstacle,
+                                     Rectangle& platform, Vector2 position);
 };

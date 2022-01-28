@@ -1,8 +1,19 @@
 #include "../include/Game.hpp"
 
 Game::Game()
+: exitWindow{false}, WindowState{true}, gameOver{false}
 {
     InitWindow(WindowWidth, WindowHeight, "Jumpy!");
+
+    RestartButton.height = 100.f;
+    RestartButton.width = 150.f;
+    RestartButton.x = 550.f / 2.f - 70.f;
+    RestartButton.y = 650.f / 2.f - 50.f;
+
+    QuitButton.height = 100.f;
+    QuitButton.width = 150.f;
+    QuitButton.x = 550.f / 2.f - 70.f;
+    QuitButton.y = 650.f / 2.f + 60.f;
 }
 
 void Game::drawStartText() const
@@ -20,7 +31,7 @@ void Game::update()
 {   
     if(!player.hasMoved)
         drawStartText();
-    player.collisionWithObsticle(obstacle.getLeftObstacle(), obstacle.getRightObstacle(), obstacle.getPlatform());
+    collisionWithObsticle(obstacle.getLeftObstacle(), obstacle.getRightObstacle(), obstacle.getPlatform(), player.getPosition());
     player.handleInput();
     player.move();
     obstacle.newWave();
@@ -29,13 +40,31 @@ void Game::update()
 
 void Game::render()
 {
-    player.draw();
-    obstacle.draw();
+    if(WindowState)
+    {
+        player.draw();
+        obstacle.draw();
+    }
+    else
+    if(!WindowState)
+    {
+        if(!gameOver)
+            DrawText("Phew...That was close!", 20.f, 550.f / 2.f, 48, BLACK);
+        else
+            DrawText("Game over", 160, 80, 48, BLACK);
+          
+        DrawRectangleRec(RestartButton, {60, 60, 60, 255});
+        DrawRectangleRec(QuitButton, {60, 60, 60, 255});
+        DrawRectangleLinesEx(RestartButton, 2.f, BLACK);
+        DrawRectangleLinesEx(QuitButton, 2.f, BLACK);
+        DrawText("Restart", 550 / 2 - 65, 300, 36, BLACK);
+        DrawText("Quit", 550 / 2 - 30, 410, 36, BLACK);
+    } 
 }
 
 void Game::MainLoop()
 {
-    while(!WindowShouldClose())
+    while(!WindowShouldClose() && !exitWindow)
     {
         BeginDrawing();
             clear();
@@ -50,6 +79,52 @@ void Game::run()
     MainLoop();
 }
 
+void Game::collisionWithObsticle(std::vector<std::vector<Vector2>>& LeftObstacle, 
+                                 std::vector<std::vector<Vector2>>& RightObstacle,
+                                 Rectangle& platform, Vector2 position)
+{
+    if(obstacle.level > 2)
+    {
+        WindowState = false;
+        gameOver = false;
+    }
+    if(position.x < 0.f)
+    {
+        WindowState = false;
+        gameOver = true;
+    }
+    if(position.x > 550.f)
+    {
+        WindowState = false;
+        gameOver = true;
+    }
+    if(position.y < 0.f)
+    {
+        WindowState = false;
+        gameOver = true;
+    }
+    if(position.y > platform.y)
+    {
+        WindowState = false;
+        gameOver = true;
+    }
+    for(auto& left : LeftObstacle)
+    {
+        if(CheckCollisionPointTriangle({position.x, position.y - 10.f}, left.at(0), left.at(1), left.at(2)))
+        {
+            WindowState = false;
+            gameOver = true;
+        }
+    }
+    for(auto& right : RightObstacle)
+    {
+        if(CheckCollisionPointTriangle({position.x, position.y - 10.f}, right.at(0), right.at(1), right.at(2)))
+        {
+            WindowState = false;
+            gameOver = true;
+        }
+    }
+}
 Game::~Game()
 {
     CloseWindow();

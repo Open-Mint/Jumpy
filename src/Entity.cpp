@@ -1,45 +1,13 @@
 #include "../include/Entity.hpp"
 
 Entity::Entity()
-: position{550.f / 2.f, 550.f}, radius{10.f}, gen{rd()}, cod{1, 4}, random{cod(gen)}, isBoosting{false}
+: position{550.f / 2.f, 550.f}, radius{10.f}, gen{rd()}, cod{1, 3}, random{cod(gen)}, isBoosting{false}
 {
 }
 
 Vector2 Entity::getPosition()
 {
     return position;
-}
-
-void Entity::collisionWithObsticle(std::vector<std::vector<Vector2>>& LeftObstacle, 
-                                   std::vector<std::vector<Vector2>>& RightObstacle,
-                                   Rectangle& platform)
-{
-    if(position.x < 0.f)
-    {
-        CloseWindow();
-    }
-    if(position.x > 550.f)
-    {
-        CloseWindow();
-    }
-    if(position.y < 0.f)
-    {
-        CloseWindow();
-    }
-    if(position.y > platform.y)
-    {
-        CloseWindow();
-    }
-    for(auto& left : LeftObstacle)
-    {
-        if(CheckCollisionPointTriangle({position.x, position.y - 10.f}, left.at(0), left.at(1), left.at(2)))
-            CloseWindow();
-    }
-    for(auto& right : RightObstacle)
-    {
-        if(CheckCollisionPointTriangle({position.x, position.y - 10.f}, right.at(0), right.at(1), right.at(2)))
-            CloseWindow();
-    }
 }
 
 void Entity::move()
@@ -91,25 +59,14 @@ void Entity::handleInput()
     {
         direction = IDLE;
     }
-
-    if(random == 3)
-    {
-        static int count = 0;
-        if(IsKeyPressed(KEY_E))
-        {
-            if(count == 0) 
-                isBoosting = true;
-            if(count == 1)
-                isBoosting = false;
-            count++;
-        }
-    }
 }
 
 void Entity::keepObstaclesMoving(std::vector<std::vector<Vector2>>& LeftObstacle, 
                                  std::vector<std::vector<Vector2>>& RightObstacle, int dif)
 {
     float speed = 20.f;
+    
+    
 
     if(dif == 0) // EASY
     {
@@ -123,9 +80,19 @@ void Entity::keepObstaclesMoving(std::vector<std::vector<Vector2>>& LeftObstacle
     else
     if(dif == 2) // HARD
     {
-        if(random == 3)
+        if(random == 2)
+        {
             DrawText("Press E", 550.f / 2.f, 650.f / 2.f, 55, GREEN);
-        
+            static int count = 0;
+            if(IsKeyPressed(KEY_E))
+            {
+                if(count == 0) 
+                    isBoosting = true;
+                if(count == 1)
+                    isBoosting = false;
+                count++;
+            }
+        }
         speed = 150.f;
     }
 
