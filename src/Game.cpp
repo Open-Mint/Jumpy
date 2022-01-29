@@ -18,7 +18,7 @@ Game::Game()
 
 void Game::drawStartText() const
 {
-    DrawText("Hello. Welcome! Move with\nUP, DOWN, LEFT, RIGHT arrows.\nTry to avoid triangles!\n*whispering*Press E when possible...",
+    DrawText("Hello. Welcome! Move with\n WASD.\nTry to avoid triangles!\n*whispering*Press E when possible...",
               100.f, 0.f, 24, BLACK);
 }
 
