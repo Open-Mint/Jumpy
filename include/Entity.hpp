@@ -38,8 +38,9 @@ public:
 
     bool hasMoved;
     bool isBoosting;
-    int count = 0;
-    float speed = 100.f;
+    int count;
+    float speed;
+    float movementSpeed;
 
     void keepObstaclesMoving(std::vector<std::vector<Vector2>>& LeftObstacle, std::vector<std::vector<Vector2>>& RightObstacle, int dif);
     
