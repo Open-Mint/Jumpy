@@ -109,6 +109,7 @@ void Game::restart()
         obstacle.level = 0;
         player.count = 0;
         player.generateNewRandom();
+        player.movementSpeed = 100.f;
         WindowState = true;
     }
 }
