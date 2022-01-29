@@ -82,6 +82,7 @@ void Entity::keepObstaclesMoving(std::vector<std::vector<Vector2>>& LeftObstacle
     else
     if(dif == 2) // HARD
     {
+        movementSpeed = 100.f;
         speed = 150.f;
         if(random == 2)
         {
@@ -101,10 +102,10 @@ void Entity::keepObstaclesMoving(std::vector<std::vector<Vector2>>& LeftObstacle
                 }
                 count++;
             }
-            else
-            {
-                color = GREEN;
-            }
+            //else
+            //{
+            //    color = GREEN;
+            //}
         
             if(isBoosting)
             {   
@@ -130,10 +131,10 @@ void Entity::keepObstaclesMoving(std::vector<std::vector<Vector2>>& LeftObstacle
                 }
                 count++;
             }
-            else
-            {
-                color = GREEN;
-            }
+            //else
+            //{
+            //    color = GREEN;
+            //}
         
             if(isBoosting)
             {   
