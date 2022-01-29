@@ -31,11 +31,19 @@ void Game::update()
 {   
     if(!player.hasMoved)
         drawStartText();
-    collisionWithObsticle(obstacle.getLeftObstacle(), obstacle.getRightObstacle(), obstacle.getPlatform(), player.getPosition());
-    player.handleInput();
-    player.move();
-    obstacle.newWave();
-    player.keepObstaclesMoving(obstacle.getLeftObstacle(), obstacle.getRightObstacle(), obstacle.level);
+    if(WindowState)
+    {    
+        collisionWithObsticle(obstacle.getLeftObstacle(), obstacle.getRightObstacle(), obstacle.getPlatform(), player.getPosition());
+        player.handleInput();
+        obstacle.newWave();
+        player.keepObstaclesMoving(obstacle.getLeftObstacle(), obstacle.getRightObstacle(), obstacle.level);
+        player.move();
+    }
+    if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && !WindowState)
+    {
+        restart();
+        quit();
+    }
 }
 
 void Game::render()
@@ -49,7 +57,7 @@ void Game::render()
     if(!WindowState)
     {
         if(!gameOver)
-            DrawText("Phew...That was close!", 20.f, 550.f / 2.f, 48, BLACK);
+            DrawText("Phew...That was close!", 20.f, 550.f / 2.f - 200.f, 48, BLACK);
         else
             DrawText("Game over", 160, 80, 48, BLACK);
           
@@ -77,6 +85,32 @@ void Game::MainLoop()
 void Game::run()
 {
     MainLoop();
+}
+
+void Game::quit()
+{
+    if(GetMouseX() >= QuitButton.x  && GetMouseX() <= QuitButton.x + QuitButton.width && 
+       GetMouseY() >= QuitButton.y && GetMouseY() <=  QuitButton.y + QuitButton.height)
+    {
+         exitWindow = true;
+    }
+}
+
+void Game::restart()
+{
+    if(GetMouseX() >= RestartButton.x  && GetMouseX() <= RestartButton.x + RestartButton.width && 
+       GetMouseY() >= RestartButton.y && GetMouseY() <=  RestartButton.y + RestartButton.height)
+    {
+        player.getPosition() = {550.f / 2.f, 550.f};
+        obstacle.clearLeftVector();
+        obstacle.clearRightVector();
+        obstacle.setVectorLeft();
+        obstacle.setVectorRight();
+        obstacle.level = 0;
+        player.count = 0;
+        player.generateNewRandom();
+        WindowState = true;
+    }
 }
 
 void Game::collisionWithObsticle(std::vector<std::vector<Vector2>>& LeftObstacle, 

@@ -34,11 +34,16 @@ public:
     
     void move();
     
-    Vector2 getPosition();
+    Vector2 &getPosition();
 
     bool hasMoved;
     bool isBoosting;
+    int count = 0;
+    float speed = 100.f;
 
     void keepObstaclesMoving(std::vector<std::vector<Vector2>>& LeftObstacle, std::vector<std::vector<Vector2>>& RightObstacle, int dif);
+    
+    void generateNewRandom();
+
     ~Entity();
 };

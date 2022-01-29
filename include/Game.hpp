@@ -27,6 +27,8 @@ private:
     void update();
     void render();
     void drawStartText() const;
+    void restart();
+    void quit();
     void collisionWithObsticle(std::vector<std::vector<Vector2>>& LeftObstacle, 
                                      std::vector<std::vector<Vector2>>& RightObstacle,
                                      Rectangle& platform, Vector2 position);

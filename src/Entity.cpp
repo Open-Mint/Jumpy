@@ -1,11 +1,11 @@
 #include "../include/Entity.hpp"
 
 Entity::Entity()
-: position{550.f / 2.f, 550.f}, radius{10.f}, gen{rd()}, cod{1, 3}, random{cod(gen)}, isBoosting{false}
+: position{550.f / 2.f, 550.f}, radius{10.f}, gen{rd()}, cod{1, 4}, random{cod(gen)}, isBoosting{false}
 {
 }
 
-Vector2 Entity::getPosition()
+Vector2& Entity::getPosition()
 {
     return position;
 }
@@ -61,51 +61,57 @@ void Entity::handleInput()
     }
 }
 
+void Entity::generateNewRandom()
+{
+    random = cod(gen);
+}
+
 void Entity::keepObstaclesMoving(std::vector<std::vector<Vector2>>& LeftObstacle, 
                                  std::vector<std::vector<Vector2>>& RightObstacle, int dif)
 {
-    float speed = 20.f;
-    
-    
-
+    static Color color = GREEN; 
     if(dif == 0) // EASY
     {
-        speed = speed;
+        speed = 100.f;
     }
     else
     if(dif == 1) // MEDIUM
     {
-        speed = 50.f;
+        speed = 100.f;
     }
     else
     if(dif == 2) // HARD
     {
+        speed = 150.f;
         if(random == 2)
         {
-            DrawText("Press E", 550.f / 2.f, 650.f / 2.f, 55, GREEN);
-            static int count = 0;
+            
+            DrawText("Press E", 550.f / 2.f, 650.f / 2.f, 55, color);
+
             if(IsKeyPressed(KEY_E))
-            {
-                if(count == 0) 
+            {   
+                color = GRAY;
+                if(count == 0)
+                {
                     isBoosting = true;
-                if(count == 1)
+                }
+                else
+                {
                     isBoosting = false;
+                }
                 count++;
             }
+            else
+            {
+                color = GREEN;
+            }
+        
+            if(isBoosting)
+            {   
+                speed = 0.f;
+            }
         }
-        speed = 150.f;
-    }
-
-    if(random == 3)
-    {
-        if(isBoosting)
-        {   
-            speed = 0.f;
-        }
-        else if(!isBoosting && dif != 2)
-        {
-            DrawText("Press E", 550.f / 2.f, 650.f / 2.f, 55, GRAY);    
-        }
+        
     }
 
     for(int i = 6; i >= 0; --i)

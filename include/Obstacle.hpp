@@ -20,7 +20,7 @@ public:
     void clearRightVector();
     void clearLeftVector();
     ~Obstacle();
-private:
+public:
     void setVectorLeft();
     void setVectorRight();
 public:
