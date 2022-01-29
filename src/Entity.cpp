@@ -36,22 +36,22 @@ void Entity::move()
 
 void Entity::handleInput()
 {
-    if(IsKeyDown(KEY_UP))
+    if(IsKeyDown(KEY_W))
     {
         direction = UP;
     }
     else
-    if(IsKeyDown(KEY_DOWN))
+    if(IsKeyDown(KEY_S))
     {
         direction = DOWN;
     }
     else
-    if(IsKeyDown(KEY_LEFT))
+    if(IsKeyDown(KEY_A))
     {
         direction = LEFT;
     }
     else
-    if(IsKeyDown(KEY_RIGHT))
+    if(IsKeyDown(KEY_D))
     {
         direction = RIGHT;
     }
