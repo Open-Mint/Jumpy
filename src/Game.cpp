@@ -144,7 +144,9 @@ void Game::collisionWithObsticle(std::vector<std::vector<Vector2>>& LeftObstacle
     }
     for(auto& left : LeftObstacle)
     {
-        if(CheckCollisionPointTriangle({position.x, position.y - 10.f}, left.at(0), left.at(1), left.at(2)))
+        if(CheckCollisionPointTriangle({position.x, position.y - 10.f}, left.at(0), left.at(1), left.at(2)) ||
+           CheckCollisionPointTriangle({position.x, position.y + 10.f}, left.at(0), left.at(1), left.at(2))
+          )
         {
             WindowState = false;
             gameOver = true;
@@ -152,7 +154,9 @@ void Game::collisionWithObsticle(std::vector<std::vector<Vector2>>& LeftObstacle
     }
     for(auto& right : RightObstacle)
     {
-        if(CheckCollisionPointTriangle({position.x, position.y - 10.f}, right.at(0), right.at(1), right.at(2)))
+        if(CheckCollisionPointTriangle({position.x, position.y - 10.f}, right.at(0), right.at(1), right.at(2)) ||
+           CheckCollisionPointTriangle({position.x, position.y + 10.f}, right.at(0), right.at(1), right.at(2))
+          )
         {
             WindowState = false;
             gameOver = true;
